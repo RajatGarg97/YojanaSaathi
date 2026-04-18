@@ -1,0 +1,36 @@
+{
+  "name": "yojana-saathi",
+  "version": "1.0.0",
+  "description": "YojanaSaathi full-fledged app foundation",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "typecheck": "tsc --noEmit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/RajatGarg97/YojanaSaathi.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/RajatGarg97/YojanaSaathi/issues"
+  },
+  "homepage": "https://github.com/RajatGarg97/YojanaSaathi#readme",
+  "dependencies": {
+    "next": "^13.5.11",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "devDependencies": {
+    "@types/node": "^20.12.12",
+    "@types/react": "^18.2.79",
+    "@types/react-dom": "^18.2.25",
+    "eslint": "^8.57.0",
+    "eslint-config-next": "^13.5.11",
+    "typescript": "^5.4.5"
+  }
+}
