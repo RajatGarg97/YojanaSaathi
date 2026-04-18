@@ -19,8 +19,9 @@ Low-income households often miss newly launched schemes, struggle to identify wh
    - automation if feasible
    - assisted government-worker or office handoff otherwise
 6. Tell the user exactly which documents are missing and offer next actions:
-   - upload or scan locally
-   - request consent to fetch from DigiLocker or another issuer flow later
+   - try DigiLocker first
+   - upload or scan locally as fallback
+   - request consent to fetch from another issuer flow later
 
 ## Non-Goals For MVP
 
@@ -70,7 +71,10 @@ Low-income households often miss newly launched schemes, struggle to identify wh
 
 ### 1. Household onboarding
 
+- Login begins with an Aadhaar-authenticated beneficiary mobile number.
 - User views one household profile with multiple members.
+- During profile setup, the beneficiary is asked whether they want to link DigiLocker.
+- DigiLocker linking is recommended but optional.
 - Each scheme is matched to the most relevant member.
 
 ### 2. Discover new schemes
@@ -97,7 +101,7 @@ Low-income households often miss newly launched schemes, struggle to identify wh
 ### 5. Missing documents
 
 - If documents are missing, the app shows which ones are needed for the matched member.
-- User can upload scans now or mark interest for future consent-based retrieval.
+- User first tries DigiLocker when applicable, then uploads scans if DigiLocker does not supply the document.
 
 ### 6. Assisted handoff
 
