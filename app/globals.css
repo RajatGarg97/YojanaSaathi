@@ -64,6 +64,12 @@ button {
   align-items: stretch;
 }
 
+.auth-shell-single {
+  grid-template-columns: 1fr;
+  align-items: center;
+  justify-items: center;
+}
+
 .app-shell {
   display: grid;
   gap: 24px;
@@ -96,9 +102,20 @@ button {
 
 .auth-intro p:not(.eyebrow),
 .hero-copy p:not(.eyebrow) {
-  max-width: 60ch;
+  max-width: 36ch;
   color: rgba(247, 247, 242, 0.84);
-  font-size: 1.08rem;
+  font-size: 1.06rem;
+  line-height: 1.52;
+}
+
+.hero-tagline {
+  margin: 10px 0 18px;
+  max-width: 20ch !important;
+  font-size: clamp(1.35rem, 2.3vw, 2rem) !important;
+  line-height: 1.08 !important;
+  font-weight: 800;
+  letter-spacing: -0.02em;
+  color: #fff7dd !important;
 }
 
 .auth-card,
@@ -117,17 +134,65 @@ button {
   align-content: center;
 }
 
+.auth-shell-single .auth-card {
+  width: min(760px, 100%);
+}
+
+.auth-brand {
+  display: grid;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.auth-brand-title {
+  margin: 0;
+  font-family: var(--font-display), serif;
+  font-size: clamp(2.2rem, 4.2vw, 3.8rem);
+  line-height: 0.96;
+  letter-spacing: -0.03em;
+  color: var(--ink);
+}
+
+.auth-brand-tagline {
+  margin: 0;
+  max-width: 24ch;
+  font-size: 1rem;
+  line-height: 1.2;
+  font-weight: 700;
+  color: var(--brand);
+}
+
+.auth-step-label {
+  margin: 6px 0 -2px;
+  font-size: 0.82rem;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: rgba(31, 42, 44, 0.52);
+  font-weight: 800;
+}
+
 .hero-panel {
   padding: 36px;
   display: grid;
   grid-template-columns: 1.618fr 1fr;
   gap: 28px;
   position: relative;
+  align-items: start;
 }
 
 .hero-copy {
   display: grid;
-  gap: 18px;
+  gap: 22px;
+  max-width: 760px;
+  padding-right: 24px;
+  align-content: start;
+}
+
+.hero-copy h1 {
+  font-size: clamp(3.4rem, 7.2vw, 6.2rem);
+  line-height: 0.9;
+  letter-spacing: -0.04em;
+  margin-top: 8px;
 }
 
 .hero-utilities {
@@ -136,10 +201,18 @@ button {
   align-content: start;
   gap: 16px;
   min-height: 120px;
+  padding-top: 72px;
 }
 
 .account-anchor {
   position: relative;
+}
+
+.hero-account-anchor {
+  position: absolute;
+  top: 28px;
+  right: 28px;
+  z-index: 12;
 }
 
 .avatar-button {
@@ -196,6 +269,7 @@ button {
 }
 
 .overview-grid,
+.single-panel-grid,
 .dashboard-grid {
   display: grid;
   gap: 24px;
@@ -203,6 +277,10 @@ button {
 
 .overview-grid {
   grid-template-columns: 1fr 1fr;
+}
+
+.single-panel-grid {
+  grid-template-columns: 1fr;
 }
 
 .dashboard-grid {
@@ -234,6 +312,17 @@ button {
   text-transform: uppercase;
   color: var(--muted);
   font-weight: 700;
+}
+
+.hero-copy .eyebrow,
+.auth-intro .eyebrow {
+  color: rgba(255, 247, 221, 0.58);
+  margin-bottom: -2px;
+}
+
+.hero-copy > p:last-child,
+.auth-intro > p:last-child {
+  margin-top: 8px;
 }
 
 .muted {
@@ -535,8 +624,61 @@ button {
   .auth-shell,
   .hero-panel,
   .dashboard-grid,
-  .overview-grid {
+  .overview-grid,
+  .single-panel-grid {
     grid-template-columns: 1fr;
+  }
+
+  .auth-shell {
+    min-height: auto;
+    gap: 12px;
+  }
+
+  .auth-intro {
+    min-height: auto;
+    justify-content: flex-start;
+    padding: 28px 30px;
+    border-radius: 32px;
+  }
+
+  .auth-intro h1 {
+    font-size: clamp(2.8rem, 7vw, 4.2rem);
+    line-height: 0.94;
+  }
+
+  .auth-intro .hero-tagline {
+    max-width: 18ch !important;
+    font-size: clamp(1.05rem, 2.6vw, 1.4rem) !important;
+    margin: 8px 0 10px;
+  }
+
+  .auth-intro > p:last-child {
+    max-width: 34ch;
+    font-size: 0.98rem;
+    line-height: 1.5;
+    margin-top: 6px;
+  }
+
+  .auth-card {
+    padding: 30px;
+    border-radius: 32px;
+  }
+
+  .auth-card h1 {
+    font-size: clamp(2.2rem, 6.2vw, 3.4rem);
+    line-height: 0.98;
+  }
+
+  .auth-shell-single .auth-card {
+    width: min(720px, 100%);
+  }
+
+  .auth-brand-title {
+    font-size: clamp(2rem, 6vw, 3rem);
+  }
+
+  .auth-brand-tagline {
+    font-size: 0.96rem;
   }
 
   .scheme-column-group {
@@ -544,7 +686,7 @@ button {
   }
 
   .hero-utilities {
-    justify-items: start;
+    justify-items: end;
   }
 }
 
@@ -552,6 +694,11 @@ button {
   .shell {
     width: min(100vw - 24px, 100%);
     padding: 12px 0 28px;
+  }
+
+  .auth-shell {
+    min-height: auto;
+    gap: 16px;
   }
 
   .auth-intro,
@@ -565,17 +712,85 @@ button {
   .hero-panel,
   .auth-card,
   .surface {
-    padding: 22px;
+    padding: 28px 24px;
+  }
+
+  .auth-brand {
+    gap: 6px;
+    margin-bottom: 4px;
+  }
+
+  .auth-brand-title {
+    font-size: clamp(1.85rem, 10vw, 2.6rem);
+    line-height: 0.98;
+  }
+
+  .auth-brand-tagline {
+    max-width: 18ch;
+    font-size: 0.92rem;
+    line-height: 1.24;
+  }
+
+  .auth-step-label {
+    font-size: 0.72rem;
+    margin: 8px 0 0;
+  }
+
+  .auth-intro {
+    min-height: auto;
+    justify-content: flex-start;
+  }
+
+  .auth-intro > p:last-child {
+    display: none;
   }
 
   .hero-panel {
     gap: 18px;
   }
 
+  .hero-account-anchor {
+    top: 18px;
+    right: 18px;
+  }
+
+  .hero-utilities {
+    padding-top: 48px;
+  }
+
   .auth-intro h1,
   .hero-copy h1,
   .auth-card h1 {
-    font-size: clamp(2.2rem, 12vw, 3.3rem);
+    font-size: clamp(2.35rem, 13.5vw, 3.8rem);
+    line-height: 0.94;
+  }
+
+  .hero-copy {
+    gap: 18px;
+    padding-right: 0;
+    max-width: none;
+  }
+
+  .hero-tagline {
+    max-width: 18ch !important;
+    font-size: clamp(0.98rem, 5.2vw, 1.22rem) !important;
+    line-height: 1.16 !important;
+    font-weight: 700;
+    margin: 10px 0 18px;
+  }
+
+  .auth-intro p:not(.eyebrow),
+  .hero-copy p:not(.eyebrow) {
+    max-width: 24ch;
+    font-size: 0.9rem;
+    line-height: 1.62;
+  }
+
+  .hero-copy .eyebrow,
+  .auth-intro .eyebrow {
+    font-size: 0.72rem;
+    letter-spacing: 0.11em;
+    margin-bottom: 4px;
   }
 
   .account-popover {

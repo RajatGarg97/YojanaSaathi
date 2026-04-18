@@ -13,11 +13,14 @@ import type {
 } from "@/lib/types";
 
 const englishCopy = {
-    productLabel: "Household-first scheme assistant",
-    heroTitle: "YojanaSaathi helps families find the right scheme and move from readiness to application.",
+    productLabel: "Government scheme assistant",
+    heroTitle: "YojanaSaathi",
+    heroTagline: "Find benefits. Get ready. Apply with confidence.",
     heroBody:
       "Aadhaar mobile login, DigiLocker-first document sourcing, scheme-level eligibility checks, and one place for new, applied, and active benefits.",
     loginEyebrow: "Welcome to YojanaSaathi",
+    otpEyebrow: "Verify OTP",
+    setupEyebrow: "Complete setup",
     loginTitle: "Log in with your Aadhaar-linked mobile number.",
     loginBody:
       "Choose your preferred language now. After login, language settings move into your profile menu.",
@@ -28,7 +31,7 @@ const englishCopy = {
     otpHint: "Use demo OTP 482913 for this prototype.",
     otpLabel: "OTP",
     verifyOtp: "Verify OTP",
-    onboardingTitle: "Set up the household before checking schemes.",
+    onboardingTitle: "Set up your applicant profile before checking schemes.",
     onboardingBody:
       "DigiLocker is optional, but linking it now makes document readiness much faster later.",
     linkDigiLocker: "Link DigiLocker",
@@ -40,7 +43,7 @@ const englishCopy = {
       inForce: "Benefits already active"
     },
     selectedScheme: "Selected scheme",
-    selectedMember: "Selected family member",
+    selectedMember: "Selected applicant",
     documentVault: "Document readiness",
     schemeEligibility: "Eligibility rules",
     schemeDocuments: "Required documents",
@@ -51,7 +54,7 @@ const englishCopy = {
     consentNeeded: "Voice consent required before applying",
     refreshMessages: "Refresh messages",
     profileMenuLanguage: "Language",
-    switchProfile: "Switch profile",
+    switchProfile: "Switch applicant",
     logout: "Logout",
     messages: "Messages and updates",
     timeline: "Recent activity",
@@ -65,11 +68,14 @@ const englishCopy = {
 };
 
 const hindiCopy: typeof englishCopy = {
-    productLabel: "परिवार-केंद्रित योजना सहायक",
-    heroTitle: "योजना साथी परिवारों को सही योजना ढूंढने और आवेदन तक पहुंचने में मदद करता है।",
+    productLabel: "सरकारी योजना सहायक",
+    heroTitle: "YojanaSaathi",
+    heroTagline: "लाभ खोजें। तैयारी करें। भरोसे के साथ आवेदन करें।",
     heroBody:
       "आधार मोबाइल लॉगिन, DigiLocker से दस्तावेज़ लाना, योजना-स्तर पर पात्रता जांच, और नई, लागू तथा सक्रिय योजनाएं एक ही जगह।",
     loginEyebrow: "योजना साथी में आपका स्वागत है",
+    otpEyebrow: "ओटीपी सत्यापन",
+    setupEyebrow: "सेटअप पूरा करें",
     loginTitle: "अपने आधार-लिंक मोबाइल नंबर से लॉगिन करें।",
     loginBody:
       "अभी अपनी पसंदीदा भाषा चुनें। लॉगिन के बाद भाषा विकल्प प्रोफाइल मेन्यू में मिलेगा।",
@@ -80,7 +86,7 @@ const hindiCopy: typeof englishCopy = {
     otpHint: "इस प्रोटोटाइप के लिए डेमो ओटीपी 482913 उपयोग करें।",
     otpLabel: "ओटीपी",
     verifyOtp: "ओटीपी सत्यापित करें",
-    onboardingTitle: "योजनाएं देखने से पहले परिवार सेट करें।",
+    onboardingTitle: "योजनाएं देखने से पहले अपना आवेदक प्रोफाइल सेट करें।",
     onboardingBody:
       "DigiLocker वैकल्पिक है, लेकिन अभी लिंक करने से आगे दस्तावेज़ तैयार करना आसान होगा।",
     linkDigiLocker: "DigiLocker लिंक करें",
@@ -92,7 +98,7 @@ const hindiCopy: typeof englishCopy = {
       inForce: "सक्रिय लाभ"
     },
     selectedScheme: "चयनित योजना",
-    selectedMember: "चयनित परिवार सदस्य",
+    selectedMember: "चयनित आवेदक",
     documentVault: "दस्तावेज़ तैयारी",
     schemeEligibility: "पात्रता नियम",
     schemeDocuments: "आवश्यक दस्तावेज़",
@@ -103,7 +109,7 @@ const hindiCopy: typeof englishCopy = {
     consentNeeded: "आवेदन से पहले आवाज़ सहमति आवश्यक है",
     refreshMessages: "संदेश ताज़ा करें",
     profileMenuLanguage: "भाषा",
-    switchProfile: "प्रोफाइल बदलें",
+    switchProfile: "आवेदक बदलें",
     logout: "लॉगआउट",
     messages: "संदेश और अपडेट",
     timeline: "हाल की गतिविधि",
@@ -348,10 +354,18 @@ export function YojanaSaathiApp() {
   }
 
   function renderAuthCard() {
+    const brandHeader = (
+      <div className="auth-brand">
+        <h2 className="auth-brand-title">{t.heroTitle}</h2>
+        <p className="auth-brand-tagline">{t.heroTagline}</p>
+      </div>
+    );
+
     if (!session.isAuthenticated) {
       return (
         <section className="auth-card">
-          <p className="eyebrow">{t.loginEyebrow}</p>
+          {brandHeader}
+          <p className="auth-step-label">{t.loginEyebrow}</p>
           <h1>{t.loginTitle}</h1>
           <p className="muted">{t.loginBody}</p>
 
@@ -387,7 +401,8 @@ export function YojanaSaathiApp() {
     if (!session.otpVerified) {
       return (
         <section className="auth-card">
-          <p className="eyebrow">{t.loginEyebrow}</p>
+          {brandHeader}
+          <p className="auth-step-label">{t.otpEyebrow}</p>
           <h1>{t.otpTitle}</h1>
           <p className="muted">{t.otpHint}</p>
 
@@ -406,7 +421,8 @@ export function YojanaSaathiApp() {
     if (!session.onboardingComplete) {
       return (
         <section className="auth-card">
-          <p className="eyebrow">{t.loginEyebrow}</p>
+          {brandHeader}
+          <p className="auth-step-label">{t.setupEyebrow}</p>
           <h1>{t.onboardingTitle}</h1>
           <p className="muted">{t.onboardingBody}</p>
 
@@ -442,12 +458,7 @@ export function YojanaSaathiApp() {
 
   if (!session.onboardingComplete) {
     return (
-      <main className="shell auth-shell">
-        <div className="auth-intro">
-          <p className="eyebrow">{t.productLabel}</p>
-          <h1>{t.heroTitle}</h1>
-          <p>{t.heroBody}</p>
-        </div>
+      <main className="shell auth-shell auth-shell-single">
         {renderAuthCard()}
       </main>
     );
@@ -456,68 +467,69 @@ export function YojanaSaathiApp() {
   return (
     <main className="shell app-shell">
       <section className="hero-panel">
+        <div className="account-anchor hero-account-anchor">
+          <button className="avatar-button" onClick={() => setAccountMenuOpen((current) => !current)} aria-label="Open profile menu">
+            <span>{selectedMember.profilePhotoLabel}</span>
+          </button>
+
+          {accountMenuOpen ? (
+            <div className="account-popover">
+              <div className="account-header">
+                <div className="avatar-chip">
+                  <span>{selectedMember.profilePhotoLabel}</span>
+                </div>
+                <div>
+                  <strong>{selectedMember.name}</strong>
+                  <p>{session.digilockerLinked ? "Aadhaar photo via DigiLocker" : "Profile image will sync after DigiLocker link"}</p>
+                </div>
+              </div>
+
+              <label className="field compact-field">
+                <span>{t.profileMenuLanguage}</span>
+                <select value={session.language} onChange={(event) => selectLanguage(event.target.value as LanguageCode)}>
+                  {languageOptions.map((option) => (
+                    <option key={option.code} value={option.code}>
+                      {option.label}
+                    </option>
+                  ))}
+                </select>
+              </label>
+
+              <div className="profile-switch-list">
+                <span className="menu-label">{t.switchProfile}</span>
+                {householdProfile.members.map((member) => (
+                  <button
+                    key={member.id}
+                    className={member.id === selectedMember.id ? "profile-option active" : "profile-option"}
+                    onClick={() => {
+                      setSelectedMemberId(member.id);
+                      const firstScheme = schemes.find((scheme) => scheme.matchedMemberId === member.id);
+                      if (firstScheme) {
+                        setSelectedSchemeId(firstScheme.id);
+                      }
+                      setAccountMenuOpen(false);
+                    }}
+                  >
+                    {member.name}
+                  </button>
+                ))}
+              </div>
+
+              <button className="secondary-button" onClick={logout}>
+                {t.logout}
+              </button>
+            </div>
+          ) : null}
+        </div>
+
         <div className="hero-copy">
           <p className="eyebrow">{t.productLabel}</p>
           <h1>{t.heroTitle}</h1>
+          <p className="hero-tagline">{t.heroTagline}</p>
           <p>{t.heroBody}</p>
         </div>
 
         <div className="hero-utilities">
-          <div className="account-anchor">
-            <button className="avatar-button" onClick={() => setAccountMenuOpen((current) => !current)} aria-label="Open profile menu">
-              <span>{selectedMember.profilePhotoLabel}</span>
-            </button>
-
-            {accountMenuOpen ? (
-              <div className="account-popover">
-                <div className="account-header">
-                  <div className="avatar-chip">
-                    <span>{selectedMember.profilePhotoLabel}</span>
-                  </div>
-                  <div>
-                    <strong>{selectedMember.name}</strong>
-                    <p>{session.digilockerLinked ? "Aadhaar photo via DigiLocker" : "Profile image will sync after DigiLocker link"}</p>
-                  </div>
-                </div>
-
-                <label className="field compact-field">
-                  <span>{t.profileMenuLanguage}</span>
-                  <select value={session.language} onChange={(event) => selectLanguage(event.target.value as LanguageCode)}>
-                    {languageOptions.map((option) => (
-                      <option key={option.code} value={option.code}>
-                        {option.label}
-                      </option>
-                    ))}
-                  </select>
-                </label>
-
-                <div className="profile-switch-list">
-                  <span className="menu-label">{t.switchProfile}</span>
-                  {householdProfile.members.map((member) => (
-                    <button
-                      key={member.id}
-                      className={member.id === selectedMember.id ? "profile-option active" : "profile-option"}
-                      onClick={() => {
-                        setSelectedMemberId(member.id);
-                        const firstScheme = schemes.find((scheme) => scheme.matchedMemberId === member.id);
-                        if (firstScheme) {
-                          setSelectedSchemeId(firstScheme.id);
-                        }
-                        setAccountMenuOpen(false);
-                      }}
-                    >
-                      {member.name}
-                    </button>
-                  ))}
-                </div>
-
-                <button className="secondary-button" onClick={logout}>
-                  {t.logout}
-                </button>
-              </div>
-            ) : null}
-          </div>
-
           <button className="secondary-button utility-button" onClick={refreshMessages}>
             {t.refreshMessages}
           </button>
@@ -528,9 +540,7 @@ export function YojanaSaathiApp() {
         <article className="surface focus-card">
           <p className="section-label">{t.selectedMember}</p>
           <h2>{selectedMember.name}</h2>
-          <p className="muted">
-            {selectedMember.relationship} · {selectedMember.occupation}
-          </p>
+          <p className="muted">{selectedMember.age} years · {selectedMember.occupation}</p>
           <div className="tag-row">
             {selectedMember.tags.map((tag) => (
               <span className="tag" key={tag}>
@@ -658,7 +668,7 @@ export function YojanaSaathiApp() {
         ) : null}
       </section>
 
-      <section className="overview-grid">
+      <section className="single-panel-grid">
         <article className="surface">
           <p className="section-label">{t.documentVault}</p>
           <ul className="document-list">
@@ -668,21 +678,6 @@ export function YojanaSaathiApp() {
                 <strong className={document.status === "verified" ? "status-good" : "status-neutral"}>{document.status}</strong>
               </li>
             ))}
-          </ul>
-        </article>
-
-        <article className="surface">
-          <p className="section-label">{t.timeline}</p>
-          <ul className="message-list">
-            {activity
-              .filter((item) => item.kind === "timeline")
-              .slice(0, 3)
-              .map((item) => (
-                <li key={item.id}>
-                  <strong>{item.title}</strong>
-                  <p>{item.body}</p>
-                </li>
-              ))}
           </ul>
         </article>
       </section>

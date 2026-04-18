@@ -16,15 +16,15 @@ export const languageOptions: Array<{ code: LanguageCode; label: string }> = [
 
 export const householdProfile: HouseholdProfile = {
   id: "household-1",
-  householdName: "Singh family",
+  householdName: "YojanaSaathi applicant profiles",
   location: "Lucknow, Uttar Pradesh",
-  incomeBandLabel: "Household profile pending scheme-level verification",
+  incomeBandLabel: "Scheme-level verification applies per beneficiary and scheme",
   aadhaarMobile: "9873294856",
   members: [
     {
       id: "member-aarti",
       name: "Aarti Singh",
-      relationship: "Daughter",
+      relationship: "Applicant profile",
       age: 19,
       occupation: "College student",
       profilePhotoLabel: "AS",
@@ -33,7 +33,7 @@ export const householdProfile: HouseholdProfile = {
     {
       id: "member-meera",
       name: "Meera Singh",
-      relationship: "Mother",
+      relationship: "Applicant profile",
       age: 33,
       occupation: "Home-based tailor",
       profilePhotoLabel: "MS",
@@ -42,7 +42,7 @@ export const householdProfile: HouseholdProfile = {
     {
       id: "member-ramesh",
       name: "Ramesh Singh",
-      relationship: "Father",
+      relationship: "Applicant profile",
       age: 39,
       occupation: "Small farmer",
       profilePhotoLabel: "RS",
@@ -170,12 +170,12 @@ export const initialSchemes: SchemeRecord[] = [
     launchDate: "2025-11-15",
     isNew: false,
     bucket: "in_force",
-    summary: "Existing ration-linked household food support.",
-    benefitSummary: "Monthly entitlement already active for the household.",
+    summary: "Existing ration-linked food support for the beneficiary profile.",
+    benefitSummary: "Monthly entitlement already active for this linked beneficiary profile.",
     eligibleTags: ["student", "pregnant", "farmer", "entrepreneur"],
     requiredDocuments: ["aadhaar", "ration_card"],
     eligibilityRequirements: [
-      { label: "Household ration document required", anyOf: ["ration_card"] }
+      { label: "Ration document required for this beneficiary profile", anyOf: ["ration_card"] }
     ],
     applicationMode: "assisted_handoff",
     contactLabel: "Already active",
@@ -195,7 +195,7 @@ export const initialActivity: ActivityItem[] = [
   {
     id: "msg-2",
     kind: "message",
-    title: "DigiLocker can fetch household documents in one step",
+    title: "DigiLocker can fetch beneficiary documents in one step",
     body: "Link DigiLocker once and then fetch all available proofs for the selected scheme.",
     timestamp: "Today"
   },

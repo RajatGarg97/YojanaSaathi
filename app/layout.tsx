@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 
 export const metadata: Metadata = {
   title: "YojanaSaathi",
-  description: "Household-first government scheme discovery, readiness, and assisted application."
+  description: "Government scheme discovery, readiness, and assisted application for any beneficiary."
 };
 
 export default function RootLayout({ children }: { children: ReactNode }) {
